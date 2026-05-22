@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
-<!-- ══════════════════════════════════════════════
-     FAVICON  (inline SVG data-URI)
-════════════════════════════════════════════════ -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2300e5ff'/%3E%3Cpath d='M8 22 L16 10 L24 22' stroke='%230a0a0f' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='10' r='2' fill='%230a0a0f'/%3E%3C/svg%3E"/>
 
 <style>
@@ -57,7 +54,6 @@
   --card-bg:    rgba(255,255,255,0.7);
   --card-hover: rgba(255,255,255,0.95);
   --glow:       rgba(0,110,184,0.1);
-  --border:     rgba(0,0,0,0.08);
 }
 
 html { font-size: 16px; }
@@ -70,23 +66,18 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
 }
 
-/* ══════════ BACKGROUND GRID ══════════ */
+/* ══════════ BACKGROUND ══════════ */
 .bg-grid {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background-image:
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 48px 48px;
-  opacity: 0.5;
-  transition: opacity 0.5s;
+  opacity: 0.5; transition: opacity 0.5s;
 }
 [data-theme="light"] .bg-grid { opacity: 0.3; }
 
-.bg-orb {
-  position: fixed; pointer-events: none; border-radius: 50%; z-index: 0;
-  filter: blur(80px); opacity: 0.12;
-  transition: opacity 0.5s;
-}
+.bg-orb { position: fixed; pointer-events: none; border-radius: 50%; z-index: 0; filter: blur(80px); opacity: 0.12; transition: opacity 0.5s; }
 .bg-orb1 { width: 600px; height: 600px; background: var(--accent);  top: -200px; left: -100px; }
 .bg-orb2 { width: 500px; height: 500px; background: var(--accent2); bottom: -150px; right: -100px; }
 [data-theme="light"] .bg-orb { opacity: 0.06; }
@@ -106,88 +97,39 @@ header {
 }
 [data-theme="light"] header { background: rgba(240,240,248,0.8); }
 
-.logo {
-  display: flex; align-items: center; gap: 12px;
-}
-.logo-icon {
-  width: 36px; height: 36px;
-}
-.logo-text {
-  font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon { width: 36px; height: 36px; }
+.logo-text { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .logo-sub { font-size: 11px; color: var(--text3); font-weight: 400; letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
 
 .header-right { display: flex; align-items: center; gap: 16px; }
 
-/* Live indicator */
-.live-badge {
-  display: flex; align-items: center; gap: 8px;
-  padding: 6px 14px; border-radius: 20px;
-  border: 1px solid var(--border2);
-  background: var(--card-bg);
-  font-size: 12px; font-weight: 600; color: var(--accent3);
-  letter-spacing: 1px;
-}
-.live-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent3);
-  animation: pulse-dot 1.5s ease-in-out infinite;
-}
-@keyframes pulse-dot {
-  0%,100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(1.4); opacity: 0.7; }
-}
+.live-badge { display: flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border2); background: var(--card-bg); font-size: 12px; font-weight: 600; color: var(--accent3); letter-spacing: 1px; }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent3); animation: pulse-dot 1.5s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.7; } }
 
-/* Sync timer */
-.sync-ring {
-  position: relative; width: 36px; height: 36px;
-  display: flex; align-items: center; justify-content: center;
-}
+.sync-ring { position: relative; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
 .sync-ring svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
 .sync-ring-track { stroke: var(--border2); fill: none; stroke-width: 2.5; }
-.sync-ring-progress { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round;
-  stroke-dasharray: 88; stroke-dashoffset: 88;
-  transition: stroke-dashoffset 1s linear;
-}
+.sync-ring-progress { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 88; stroke-dashoffset: 88; transition: stroke-dashoffset 1s linear; }
 .sync-icon { width: 16px; height: 16px; color: var(--text2); transition: transform 0.5s ease; }
 .sync-icon.spinning { animation: spin 0.8s linear; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Last updated */
 #lastUpdated { font-size: 11px; color: var(--text3); font-family: var(--mono); }
 
-/* Theme toggle */
-.theme-btn {
-  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border2);
-  background: var(--card-bg); cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: var(--transition); color: var(--text2);
-}
+.theme-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border2); background: var(--card-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: var(--transition); color: var(--text2); }
 .theme-btn:hover { background: var(--card-hover); border-color: var(--accent); color: var(--accent); transform: scale(1.05); }
 
 /* ══════════ TOP STATS BAR ══════════ */
-.stats-bar {
-  display: flex; gap: 1px;
-  background: var(--border);
-  border-bottom: 1px solid var(--border2);
-  overflow: hidden;
-}
-.stat-pill {
-  flex: 1; padding: 14px 20px; background: var(--bg2);
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  transition: background 0.3s ease;
-  opacity: 0; transform: translateY(-10px);
-  animation: slideInTop 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
-}
+.stats-bar { display: flex; gap: 1px; background: var(--border); border-bottom: 1px solid var(--border2); overflow: hidden; }
+.stat-pill { flex: 1; padding: 14px 20px; background: var(--bg2); display: flex; flex-direction: column; align-items: center; gap: 2px; transition: background 0.3s ease; opacity: 0; transform: translateY(-10px); animation: slideInTop 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
 .stat-pill:nth-child(1) { animation-delay: 0.05s; }
-.stat-pill:nth-child(2) { animation-delay: 0.1s; }
+.stat-pill:nth-child(2) { animation-delay: 0.10s; }
 .stat-pill:nth-child(3) { animation-delay: 0.15s; }
-.stat-pill:nth-child(4) { animation-delay: 0.2s; }
+.stat-pill:nth-child(4) { animation-delay: 0.20s; }
 .stat-pill:nth-child(5) { animation-delay: 0.25s; }
-@keyframes slideInTop {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes slideInTop { to { opacity: 1; transform: translateY(0); } }
 .stat-pill-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); }
 .stat-pill-val { font-size: 22px; font-weight: 800; }
 .stat-pill-val.c-accent  { color: var(--accent); }
@@ -196,151 +138,125 @@ header {
 .stat-pill-val.c-accent4 { color: var(--accent4); }
 .stat-pill-val.c-accent5 { color: var(--accent5); }
 
-/* ══════════ MAIN STAGE ══════════ */
-.stage {
-  flex: 1; padding: 32px 40px 40px;
-  display: flex; flex-direction: column; gap: 24px;
+/* ══════════ INTERVAL BANNER ══════════ */
+.interval-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 40px;
+  background: linear-gradient(90deg, rgba(0,229,255,0.06), rgba(124,58,237,0.06));
+  border-bottom: 1px solid var(--border2);
+  gap: 16px;
+  flex-wrap: wrap;
 }
+
+.interval-info {
+  display: flex; align-items: center; gap: 12px;
+}
+
+.interval-chip {
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 14px; border-radius: 20px;
+  border: 1px solid rgba(0,229,255,0.25);
+  background: rgba(0,229,255,0.07);
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  font-family: var(--mono); letter-spacing: 1px;
+}
+
+.interval-chip-icon {
+  width: 14px; height: 14px;
+}
+
+.interval-range {
+  font-size: 13px; font-weight: 600; color: var(--text2);
+  font-family: var(--mono);
+}
+
+.interval-countdown-wrap {
+  display: flex; align-items: center; gap: 10px;
+}
+
+.countdown-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3);
+}
+
+.countdown-timer {
+  font-size: 18px; font-weight: 800; color: var(--accent4);
+  font-family: var(--mono); letter-spacing: 2px;
+  min-width: 60px; text-align: right;
+}
+
+.countdown-timer.urgent { color: var(--accent5); animation: blink-urgent 0.8s ease-in-out infinite; }
+@keyframes blink-urgent { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.break-badge {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 20px;
+  background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3);
+  color: var(--accent4); font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  animation: pulse-break 1s ease-in-out infinite;
+}
+@keyframes pulse-break { 0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.3); } 50% { box-shadow: 0 0 0 8px rgba(245,158,11,0); } }
+
+.after-last-badge {
+  padding: 5px 14px; border-radius: 20px;
+  background: rgba(90,90,114,0.15); border: 1px solid var(--border2);
+  color: var(--text3); font-size: 12px; font-weight: 600; letter-spacing: 1px;
+  font-family: var(--mono);
+}
+
+/* ══════════ MAIN STAGE ══════════ */
+.stage { flex: 1; padding: 32px 40px 40px; display: flex; flex-direction: column; gap: 24px; }
 
 /* ══════════ SLIDE HEADER ══════════ */
-.slide-header {
-  display: flex; align-items: center; justify-content: space-between;
-}
+.slide-header { display: flex; align-items: center; justify-content: space-between; }
 .slide-title { font-size: 13px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; font-family: var(--mono); }
 .slide-counter { display: flex; gap: 8px; align-items: center; }
-.dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--border2); cursor: pointer;
-  transition: var(--transition);
-}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border2); cursor: pointer; transition: var(--transition); }
 .dot.active { background: var(--accent); transform: scale(1.3); }
-.dot:hover  { background: var(--text2); }
-
+.dot:hover { background: var(--text2); }
 .nav-btns { display: flex; gap: 8px; }
-.nav-btn {
-  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border2);
-  background: var(--card-bg); cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: var(--text2); transition: var(--transition);
-}
+.nav-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border2); background: var(--card-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text2); transition: var(--transition); }
 .nav-btn:hover { background: var(--card-hover); border-color: var(--accent); color: var(--accent); }
 
-/* Progress bar */
-.slide-progress {
-  height: 2px; background: var(--border);
-  border-radius: 2px; overflow: hidden;
-}
-.slide-progress-fill {
-  height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2));
-  border-radius: 2px; width: 0%;
-  transition: width 1s linear;
-}
+.slide-progress { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.slide-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; width: 0%; transition: width 1s linear; }
 
 /* ══════════ CAROUSEL ══════════ */
 .carousel { position: relative; overflow: hidden; flex: 1; min-height: 400px; }
-.slides-wrapper {
-  display: flex;
-  height: 100%;
-  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
-}
-.slide {
-  min-width: 100%; height: 100%;
-  display: grid;
-  gap: 20px;
-  align-content: start;
-}
+.slides-wrapper { display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+.slide { min-width: 100%; height: 100%; display: grid; gap: 20px; align-content: start; }
 .slide.agents-1 { grid-template-columns: 1fr; }
 .slide.agents-2 { grid-template-columns: repeat(2, 1fr); }
 .slide.agents-3 { grid-template-columns: repeat(3, 1fr); }
 
 /* ══════════ AGENT CARD ══════════ */
-.agent-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  display: flex; flex-direction: column; gap: 20px;
-  transition: var(--transition);
-  position: relative; overflow: hidden;
-  opacity: 0; transform: translateY(30px);
-  animation: cardIn 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
-}
-.agent-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  opacity: 0; transition: opacity 0.3s ease;
-}
+.agent-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 20px; transition: var(--transition); position: relative; overflow: hidden; opacity: 0; transform: translateY(30px); animation: cardIn 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+.agent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s ease; }
 .agent-card:hover { background: var(--card-hover); border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
 .agent-card:hover::before { opacity: 1; }
-
-@keyframes cardIn {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
 .agent-card:nth-child(1) { animation-delay: 0.05s; }
 .agent-card:nth-child(2) { animation-delay: 0.15s; }
 .agent-card:nth-child(3) { animation-delay: 0.25s; }
 
-/* Card header */
-.card-head {
-  display: flex; align-items: center; justify-content: space-between;
-}
+.card-head { display: flex; align-items: center; justify-content: space-between; }
 .agent-info { display: flex; align-items: center; gap: 12px; }
-.agent-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 800; color: #fff; flex-shrink: 0;
-  position: relative;
-}
-.agent-avatar::after {
-  content: '';
-  position: absolute; inset: -3px; border-radius: 50%;
-  border: 2px solid transparent;
-  background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out; mask-composite: exclude;
-  opacity: 0; transition: opacity 0.3s ease;
-}
+.agent-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #fff; flex-shrink: 0; position: relative; }
+.agent-avatar::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid transparent; background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude; opacity: 0; transition: opacity 0.3s ease; }
 .agent-card:hover .agent-avatar::after { opacity: 1; }
-
 .agent-name { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
 .agent-date { font-size: 11px; color: var(--text3); font-family: var(--mono); margin-top: 2px; }
 
-.card-badge {
-  padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
-  background: rgba(16,185,129,0.1); color: var(--accent3); border: 1px solid rgba(16,185,129,0.2);
-}
-.card-badge.no-data {
-  background: rgba(239,68,68,0.1); color: var(--accent5); border-color: rgba(239,68,68,0.2);
-}
+.card-badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; background: rgba(16,185,129,0.1); color: var(--accent3); border: 1px solid rgba(16,185,129,0.2); }
+.card-badge.no-data { background: rgba(239,68,68,0.1); color: var(--accent5); border-color: rgba(239,68,68,0.2); }
 
-/* Metrics grid */
-.metrics-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
-}
-.metric {
-  background: var(--bg3);
-  border-radius: var(--radius-sm);
-  padding: 14px;
-  border: 1px solid var(--border);
-  position: relative; overflow: hidden;
-  transition: var(--transition);
-}
+/* ══════════ METRICS ══════════ */
+.metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.metric { background: var(--bg3); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--border); position: relative; overflow: hidden; transition: var(--transition); }
 .metric:hover { border-color: var(--border2); }
-
-.metric-icon {
-  width: 28px; height: 28px; margin-bottom: 10px;
-  opacity: 0.8;
-}
-.metric-val {
-  font-size: 28px; font-weight: 800; line-height: 1;
-  font-family: var(--mono);
-  letter-spacing: -1px;
-}
-.metric-label {
-  font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
-  color: var(--text3); margin-top: 4px;
-}
+.metric-icon { width: 28px; height: 28px; margin-bottom: 10px; opacity: 0.8; }
+.metric-val { font-size: 28px; font-weight: 800; line-height: 1; font-family: var(--mono); letter-spacing: -1px; }
+.metric-label { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text3); margin-top: 4px; }
+.metric-base { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-top: 3px; opacity: 0.7; }
 
 .metric.m-total  .metric-val { color: var(--accent); }
 .metric.m-fax    .metric-val { color: var(--accent2); }
@@ -348,62 +264,26 @@ header {
 .metric.m-pure   .metric-val { color: var(--accent4); }
 .metric.m-miss   .metric-val { color: var(--accent5); }
 
-/* Metric accent line */
-.metric::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  border-radius: 0 2px 2px 0;
-}
+.metric::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 0 2px 2px 0; }
 .metric.m-total::before  { background: var(--accent); }
 .metric.m-fax::before    { background: var(--accent2); }
 .metric.m-follow::before { background: var(--accent3); }
 .metric.m-pure::before   { background: var(--accent4); }
 .metric.m-miss::before   { background: var(--accent5); }
 
-/* Number count animation */
-.count-num { display: inline-block; }
-
-/* Wide metric (total — spans 2 cols on wide cards) */
 .metric.m-total.span2 { grid-column: span 2; }
 
-/* ══════════ EMPTY / ERROR / LOADING STATES ══════════ */
-.state-screen {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 16px;
-  color: var(--text2); text-align: center; padding: 40px;
-}
+/* ══════════ STATES ══════════ */
+.state-screen { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: var(--text2); text-align: center; padding: 40px; }
 .state-icon { width: 64px; height: 64px; opacity: 0.4; }
 .state-title { font-size: 20px; font-weight: 700; color: var(--text); }
 .state-msg { font-size: 14px; color: var(--text2); max-width: 400px; line-height: 1.6; }
-.loader-ring {
-  width: 60px; height: 60px;
-  border: 3px solid var(--border2);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
+.loader-ring { width: 60px; height: 60px; border: 3px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
 
-/* ══════════ CONFIG BANNER ══════════ */
-.config-banner {
-  background: rgba(245,158,11,0.08);
-  border: 1px solid rgba(245,158,11,0.2);
-  border-radius: var(--radius-sm);
-  padding: 14px 20px;
-  display: flex; align-items: center; gap: 12px;
-  font-size: 13px; color: var(--accent4);
-  transition: opacity 0.5s;
-}
-.config-banner svg { flex-shrink: 0; }
-.config-banner code {
-  font-family: var(--mono); background: var(--bg3);
-  padding: 2px 8px; border-radius: 4px; font-size: 12px;
-  color: var(--text);
-}
+.config-banner { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: var(--radius-sm); padding: 14px 20px; display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--accent4); }
+.config-banner code { font-family: var(--mono); background: var(--bg3); padding: 2px 8px; border-radius: 4px; font-size: 12px; color: var(--text); }
 
-/* ══════════ NO DATA CARD ══════════ */
-.no-data-card {
-  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 8px; color: var(--text3); padding: 20px; text-align: center;
-}
+.no-data-card { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--text3); padding: 20px; text-align: center; }
 .no-data-card svg { opacity: 0.3; }
 .no-data-card span { font-size: 13px; }
 
@@ -416,12 +296,12 @@ header {
 @media (max-width: 900px) {
   header { padding: 16px 20px; }
   .stage { padding: 20px; }
+  .interval-banner { padding: 10px 20px; }
   .slide.agents-3 { grid-template-columns: repeat(2, 1fr); }
   #lastUpdated { display: none; }
 }
 @media (max-width: 600px) {
-  .slide.agents-2,
-  .slide.agents-3 { grid-template-columns: 1fr; }
+  .slide.agents-2, .slide.agents-3 { grid-template-columns: 1fr; }
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .metric.m-total.span2 { grid-column: span 2; }
   .stats-bar { display: none; }
@@ -439,15 +319,13 @@ header {
   <!-- ══ HEADER ══ -->
   <header>
     <div class="logo">
-      <!-- Logo SVG -->
-      <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
         <rect width="36" height="36" rx="10" fill="url(#lg)"/>
         <path d="M11 25 L18 11 L25 25" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         <line x1="13.5" y1="20" x2="22.5" y2="20" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
         <defs>
           <linearGradient id="lg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00e5ff"/>
-            <stop offset="1" stop-color="#7c3aed"/>
+            <stop stop-color="#00e5ff"/><stop offset="1" stop-color="#7c3aed"/>
           </linearGradient>
         </defs>
       </svg>
@@ -458,39 +336,25 @@ header {
     </div>
 
     <div class="header-right">
-      <div class="live-badge">
-        <div class="live-dot"></div>
-        LIVE
-      </div>
-
+      <div class="live-badge"><div class="live-dot"></div>LIVE</div>
       <div id="lastUpdated">—</div>
-
-      <!-- Sync progress ring -->
       <div class="sync-ring" title="Next sync">
         <svg width="36" height="36" viewBox="0 0 36 36">
           <circle class="sync-ring-track" cx="18" cy="18" r="14"/>
           <circle class="sync-ring-progress" id="syncRing" cx="18" cy="18" r="14"/>
         </svg>
-        <!-- Sync icon SVG -->
         <svg class="sync-icon" id="syncIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M23 4v6h-6"/>
-          <path d="M1 20v-6h6"/>
+          <path d="M23 4v6h-6"/><path d="M1 20v-6h6"/>
           <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
         </svg>
       </div>
-
-      <!-- Theme toggle -->
       <button class="theme-btn" id="themeBtn" title="Toggle theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
           <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
       </button>
     </div>
@@ -524,9 +388,11 @@ header {
     </div>
   </div>
 
+  <!-- ══ INTERVAL BANNER ══ -->
+  <div class="interval-banner" id="intervalBanner" style="display:none"></div>
+
   <!-- ══ MAIN STAGE ══ -->
   <div class="stage" id="stage">
-    <!-- Loading screen shown first -->
     <div class="state-screen" id="loadingScreen">
       <div class="loader-ring"></div>
       <div class="state-title">Connecting to live data…</div>
@@ -538,65 +404,281 @@ header {
 
 <script>
 // ══════════════════════════════════════════════
-//  CONFIGURATION — paste your deployed Web App URL here
+//  CONFIGURATION
 // ══════════════════════════════════════════════
-const API_URL = "https://script.google.com/macros/s/AKfycbxPLFMcxr8z-NW9UzeAFElcAPbDBmQeRqWN47Ebsbr2WL7SZMaEIwPPKpf4PrLSGs4r/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwq0Hk4a_JgZ53jEI2CebpYL7VjugbgjnWIx5HULxabtjMgSYeg40oPi5toeRGpIqi7/exec";
 
 // ══════════════════════════════════════════════
 //  CONSTANTS
 // ══════════════════════════════════════════════
-const SYNC_INTERVAL  = 30;   // seconds
-const AGENTS_PER_SLIDE = 3;  // max agents per slide
-const SLIDE_INTERVAL = 15;   // seconds between auto-slide
-const SLIDE_CIRCUMFERENCE = 2 * Math.PI * 14; // SVG ring
+const SYNC_INTERVAL    = 30;   // seconds between data fetches
+const AGENTS_PER_SLIDE = 3;    // max agents per slide
+const SLIDE_INTERVAL   = 15;   // seconds between auto-slide
+const SLIDE_CIRC       = 2 * Math.PI * 14;
+const GRACE_MINUTES    = 5;    // minutes after break time before reset fires
+const CAIRO_TZ         = "Africa/Cairo";
 
 // ══════════════════════════════════════════════
 //  STATE
 // ══════════════════════════════════════════════
-let agentData     = [];
-let currentSlide  = 0;
-let totalSlides   = 0;
-let syncTimer     = null;
-let slideTimer    = null;
-let syncCountdown = 0;
-let slideCountdown= 0;
+let agentData       = [];
+let breakTimes      = [];   // ["05:00","07:00","09:30"] sorted ascending
+
+// Interval tracking
+// snapshot[agentName] = { totalActions, faxesSent, followUps, pureLeads, missingChasing }
+// These are the RAW sheet values at the moment the last reset happened.
+// Displayed value = current raw - snapshot value
+let snapshots       = {};   // agent-name → baseline raw values
+let lastResetKey    = null; // e.g. "05:00" — which break triggered the last reset
+let resetHandled    = {};   // breakTime → bool, so we only reset once per break per day
+
+let currentSlide    = 0;
+let totalSlides     = 0;
+let syncTimer       = null;
+let slideTimer      = null;
+let countdownTimer  = null;
+let syncCountdown   = 0;
+let slideCountdown  = 0;
 
 // ══════════════════════════════════════════════
 //  THEME
 // ══════════════════════════════════════════════
 const themeBtn  = document.getElementById('themeBtn');
 const themeIcon = document.getElementById('themeIcon');
+const MOON_SVG  = `<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+const SUN_SVG   = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
 
-const MOON_SVG = `<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
-const SUN_SVG  = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
-
-function setThemeIcon(theme) {
-  themeIcon.innerHTML = theme === 'dark' ? MOON_SVG : SUN_SVG;
-}
-
+function setThemeIcon(t) { themeIcon.innerHTML = t === 'dark' ? MOON_SVG : SUN_SVG; }
 themeBtn.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   setThemeIcon(next);
 });
-
-// Init theme
 const savedTheme = localStorage.getItem('theme') || 'dark';
 document.documentElement.setAttribute('data-theme', savedTheme);
 setThemeIcon(savedTheme);
+
+// ══════════════════════════════════════════════
+//  CAIRO TIME HELPERS
+// ══════════════════════════════════════════════
+
+// Returns a Date representing "now" in Cairo timezone
+function getCairoNow() {
+  return new Date(new Date().toLocaleString("en-US", { timeZone: CAIRO_TZ }));
+}
+
+// Returns minutes-since-midnight for a "HH:MM" string
+function timeStrToMinutes(str) {
+  const [h, m] = str.split(":").map(Number);
+  return h * 60 + m;
+}
+
+// Current Cairo time as minutes-since-midnight
+function cairoMinutesNow() {
+  const now = getCairoNow();
+  return now.getHours() * 60 + now.getMinutes();
+}
+
+// Cairo date string "YYYY-MM-DD" for keying daily resets
+function cairoDateKey() {
+  const now = getCairoNow();
+  return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+}
+
+// ══════════════════════════════════════════════
+//  INTERVAL LOGIC
+// ══════════════════════════════════════════════
+
+/*
+  Break times define the START of a break (end of an interval).
+  Grace period: we fire the reset GRACE_MINUTES after the break time.
+
+  Example with breaks = ["05:00","07:00","09:30"]:
+  - Interval 0: start-of-day → 05:00  (reset fires at 05:05)
+  - Interval 1: 05:00 → 07:00         (reset fires at 07:05)
+  - Interval 2: 07:00 → 09:30         (reset fires at 09:35)
+  - Interval 3: 09:30 → end-of-day    (no more resets)
+*/
+
+// Returns which break index we are IN (i.e. which interval is active)
+// -1 = before first break time interval start (shouldn't happen in practice)
+function getCurrentIntervalIndex(minutesNow, breakMins) {
+  // breakMins: sorted ascending array of break minutes
+  // We're in interval i if: breakMins[i-1] + GRACE <= now < breakMins[i] + GRACE
+  // (where breakMins[-1] = 0 = midnight)
+
+  if (!breakMins.length) return 0;
+
+  // After last break + grace → we're in the final interval
+  const lastBreak = breakMins[breakMins.length - 1] + GRACE_MINUTES;
+  if (minutesNow >= lastBreak) return breakMins.length; // final interval
+
+  // Find which interval we're in
+  for (let i = 0; i < breakMins.length; i++) {
+    const breakEnd = breakMins[i] + GRACE_MINUTES;
+    if (minutesNow < breakEnd) return i;
+  }
+  return breakMins.length;
+}
+
+function getIntervalLabel(idx, breakTimes) {
+  if (!breakTimes.length) return { name: "Working Session", range: "All Day" };
+
+  if (idx === 0) {
+    return { name: `Interval 1`, range: `Start → ${breakTimes[0]}` };
+  }
+  if (idx >= breakTimes.length) {
+    return { name: `Interval ${idx + 1}`, range: `${breakTimes[idx - 1]} → End` };
+  }
+  return { name: `Interval ${idx + 1}`, range: `${breakTimes[idx - 1]} → ${breakTimes[idx]}` };
+}
+
+// ── Check if a reset should fire and fire it ──────────────────
+function checkAndFireResets() {
+  if (!breakTimes.length || !agentData.length) return;
+
+  const breakMins = breakTimes.map(timeStrToMinutes);
+  const now       = cairoMinutesNow();
+  const dateKey   = cairoDateKey();
+
+  for (let i = 0; i < breakMins.length; i++) {
+    const resetAt  = breakMins[i] + GRACE_MINUTES;  // when reset fires
+    const resetKey = `${dateKey}_${breakTimes[i]}`;
+
+    // Has this reset already been handled today?
+    if (resetHandled[resetKey]) continue;
+
+    // Is it time? (we're at or past the grace point)
+    if (now >= resetAt) {
+      fireReset(breakTimes[i], resetKey);
+    }
+  }
+}
+
+// Take a snapshot of all current raw values → these become the new baseline
+function fireReset(breakTime, resetKey) {
+  console.log(`[INTERVAL] Reset fired for break at ${breakTime}`);
+
+  snapshots = {};
+  agentData.forEach(a => {
+    const d = a.data;
+    snapshots[a.agent] = {
+      totalActions:   d ? (d.totalActions   ?? 0) : 0,
+      faxesSent:      d ? (d.faxesSent      ?? 0) : 0,
+      followUps:      d ? (d.followUps      ?? 0) : 0,
+      pureLeads:      d ? (d.pureLeads      ?? 0) : 0,
+      missingChasing: d ? (d.missingChasing ?? 0) : 0,
+    };
+  });
+
+  lastResetKey         = breakTime;
+  resetHandled[resetKey] = true;
+
+  // Re-render with new baselines
+  renderDashboard();
+}
+
+// Get displayed (delta) value for a metric
+function getDelta(agentName, field, rawValue) {
+  if (!rawValue && rawValue !== 0) return 0;
+  const base = snapshots[agentName];
+  if (!base) return rawValue ?? 0;
+  return Math.max(0, (rawValue ?? 0) - (base[field] ?? 0));
+}
+
+// ══════════════════════════════════════════════
+//  INTERVAL BANNER
+// ══════════════════════════════════════════════
+function updateIntervalBanner() {
+  const banner = document.getElementById('intervalBanner');
+  if (!banner) return;
+
+  if (!breakTimes.length) {
+    banner.style.display = 'none';
+    return;
+  }
+
+  banner.style.display = 'flex';
+  const breakMins  = breakTimes.map(timeStrToMinutes);
+  const now        = cairoMinutesNow();
+  const idx        = getCurrentIntervalIndex(now, breakMins);
+  const { name, range } = getIntervalLabel(idx, breakTimes);
+
+  // Check if we're currently IN a grace period (break is happening)
+  let inGrace = false;
+  for (let i = 0; i < breakMins.length; i++) {
+    if (now >= breakMins[i] && now < breakMins[i] + GRACE_MINUTES) {
+      inGrace = true;
+      break;
+    }
+  }
+
+  // Time until next break
+  let nextBreakMins = null;
+  for (let i = 0; i < breakMins.length; i++) {
+    if (breakMins[i] > now) { nextBreakMins = breakMins[i]; break; }
+  }
+
+  const isAfterLastBreak = (nextBreakMins === null) && !inGrace;
+
+  if (inGrace) {
+    banner.innerHTML = `
+      <div class="interval-info">
+        <div class="interval-chip">
+          <svg class="interval-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          BREAK TIME
+        </div>
+        <span class="interval-range">Dashboard resets in ${GRACE_MINUTES} min…</span>
+      </div>
+      <div class="break-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        GRACE PERIOD
+      </div>`;
+    return;
+  }
+
+  if (isAfterLastBreak) {
+    banner.innerHTML = `
+      <div class="interval-info">
+        <div class="interval-chip">
+          <svg class="interval-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          ${name}
+        </div>
+        <span class="interval-range">${range}</span>
+      </div>
+      <span class="after-last-badge">Final Session — No more breaks</span>`;
+    return;
+  }
+
+  // Normal: show name, range, countdown
+  const minsLeft = nextBreakMins - now;
+  const h = Math.floor(minsLeft / 60);
+  const m = minsLeft % 60;
+  const countdownStr = h > 0 ? `${h}h ${String(m).padStart(2,'0')}m` : `${m}m`;
+  const urgent = minsLeft <= 5;
+
+  banner.innerHTML = `
+    <div class="interval-info">
+      <div class="interval-chip">
+        <svg class="interval-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        ${name}
+      </div>
+      <span class="interval-range">${range}</span>
+    </div>
+    <div class="interval-countdown-wrap">
+      <span class="countdown-label">Next break in</span>
+      <span class="countdown-timer${urgent ? ' urgent' : ''}">${countdownStr}</span>
+    </div>`;
+}
 
 // ══════════════════════════════════════════════
 //  SYNC RING
 // ══════════════════════════════════════════════
 const syncRingEl = document.getElementById('syncRing');
 const syncIconEl = document.getElementById('syncIcon');
-
-function updateSyncRing(secondsLeft) {
-  const fraction = secondsLeft / SYNC_INTERVAL;
-  const offset = SLIDE_CIRCUMFERENCE * (1 - fraction);
-  syncRingEl.style.strokeDashoffset = offset;
+function updateSyncRing(s) {
+  syncRingEl.style.strokeDashoffset = SLIDE_CIRC * (1 - s / SYNC_INTERVAL);
 }
 
 // ══════════════════════════════════════════════
@@ -604,19 +686,24 @@ function updateSyncRing(secondsLeft) {
 // ══════════════════════════════════════════════
 async function fetchData() {
   if (!API_URL || API_URL === 'YOUR_DEPLOYED_WEB_APP_URL_HERE') {
-    showConfigBanner();
-    showLoadingDone();
-    return;
+    showLoadingDone(); return;
   }
-
   syncIconEl.classList.add('spinning');
   try {
     const res  = await fetch(API_URL + (API_URL.includes('?') ? '&' : '?') + '_=' + Date.now());
     const json = await res.json();
     if (json.error) throw new Error(json.error);
-    agentData = json.agents || [];
+
+    agentData  = json.agents    || [];
+    breakTimes = json.breakTimes || [];
+
     updateLastUpdated(json.fetchedAt);
+
+    // Check resets BEFORE rendering so displayed values are correct
+    checkAndFireResets();
+
     renderDashboard();
+
   } catch (e) {
     console.error('Fetch error:', e);
     showError(e.message);
@@ -627,9 +714,8 @@ async function fetchData() {
 
 function updateLastUpdated(iso) {
   const el = document.getElementById('lastUpdated');
-  if (!iso) return;
-  const d = new Date(iso);
-  el.textContent = 'Updated ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  if (!iso || !el) return;
+  el.textContent = 'Updated ' + new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
 // ══════════════════════════════════════════════
@@ -637,29 +723,22 @@ function updateLastUpdated(iso) {
 // ══════════════════════════════════════════════
 function renderDashboard() {
   const stage = document.getElementById('stage');
-
   if (!agentData.length) {
     stage.innerHTML = `
       <div class="state-screen">
         <svg class="state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
         <div class="state-title">No Agents Found</div>
-        <div class="state-msg">The Agents sheet appears to be empty. Add agent names to column A of the "Agents" sheet in your master spreadsheet.</div>
+        <div class="state-msg">Add agent names to column A of the "Agents" sheet in your master spreadsheet.</div>
       </div>`;
     return;
   }
 
-  // Build slides
   const chunks = [];
-  for (let i = 0; i < agentData.length; i += AGENTS_PER_SLIDE) {
-    chunks.push(agentData.slice(i, i + AGENTS_PER_SLIDE));
-  }
+  for (let i = 0; i < agentData.length; i += AGENTS_PER_SLIDE) chunks.push(agentData.slice(i, i + AGENTS_PER_SLIDE));
   totalSlides = chunks.length;
 
-  // Update top stats
   updateTopStats();
-
-  // Build HTML
-  const slidesHTML = chunks.map((chunk, idx) => buildSlide(chunk, idx)).join('');
+  updateIntervalBanner();
 
   stage.innerHTML = `
     <div id="configBannerHolder"></div>
@@ -668,10 +747,10 @@ function renderDashboard() {
       <div style="display:flex;align-items:center;gap:16px;">
         <div class="slide-counter" id="slideDots"></div>
         <div class="nav-btns">
-          <button class="nav-btn" id="prevBtn" onclick="prevSlide()">
+          <button class="nav-btn" onclick="prevSlide()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+          <button class="nav-btn" onclick="nextSlide()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
@@ -679,7 +758,7 @@ function renderDashboard() {
     </div>
     <div class="slide-progress"><div class="slide-progress-fill" id="slideProg"></div></div>
     <div class="carousel">
-      <div class="slides-wrapper" id="slidesWrapper">${slidesHTML}</div>
+      <div class="slides-wrapper" id="slidesWrapper">${chunks.map((c,i) => buildSlide(c,i)).join('')}</div>
     </div>`;
 
   buildDots();
@@ -687,81 +766,88 @@ function renderDashboard() {
   startSlideTimer();
 }
 
+// ══════════════════════════════════════════════
+//  CARD BUILDER
+// ══════════════════════════════════════════════
 function buildSlide(agents, idx) {
-  const cls = `agents-${agents.length}`;
-  const cards = agents.map(a => buildCard(a)).join('');
-  return `<div class="slide ${cls}" data-idx="${idx}">${cards}</div>`;
+  return `<div class="slide agents-${agents.length}" data-idx="${idx}">${agents.map(a => buildCard(a)).join('')}</div>`;
 }
 
 function buildCard(agent) {
-  const d = agent.data;
-  const hasData = d && d.totalActions !== undefined;
-  const initials = agent.agent.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
-
+  const d        = agent.data;
+  const hasData  = d && d.totalActions !== undefined;
+  const initials = agent.agent.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  const dateHTML = (d && d.date) ? `<div class="agent-date">${d.date}</div>` : '';
   const badgeHTML = hasData
     ? `<span class="card-badge">Active</span>`
     : `<span class="card-badge no-data">No Data</span>`;
 
-  const dateHTML = (d && d.date) ? `<div class="agent-date">${d.date}</div>` : '';
+  let metricsHTML;
+  if (hasData) {
+    // Compute deltas
+    const dTotal  = getDelta(agent.agent, 'totalActions',   d.totalActions);
+    const dFax    = getDelta(agent.agent, 'faxesSent',      d.faxesSent   ?? 0);
+    const dFollow = getDelta(agent.agent, 'followUps',      d.followUps   ?? 0);
+    const dPure   = getDelta(agent.agent, 'pureLeads',      d.pureLeads   ?? 0);
+    const dMiss   = getDelta(agent.agent, 'missingChasing', d.missingChasing ?? 0);
 
-  const metricsHTML = hasData ? `
-    <div class="metrics-grid">
-      <div class="metric m-total span2">
-        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-        </svg>
-        <div class="metric-val count-num" data-val="${d.totalActions}">${d.totalActions}</div>
-        <div class="metric-label">Total Actions</div>
-      </div>
-      <div class="metric m-fax">
-        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/>
-          <polyline points="16 17 22 17 22 11"/>
-        </svg>
-        <div class="metric-val count-num" data-val="${d.faxesSent ?? 0}">${d.faxesSent ?? 0}</div>
-        <div class="metric-label">Faxes Sent</div>
-      </div>
-      <div class="metric m-follow">
-        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-        <div class="metric-val count-num" data-val="${d.followUps ?? 0}">${d.followUps ?? 0}</div>
-        <div class="metric-label">Follow Ups</div>
-      </div>
-      <div class="metric m-pure">
-        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-        <div class="metric-val count-num" data-val="${d.pureLeads ?? 0}">${d.pureLeads ?? 0}</div>
-        <div class="metric-label">Pure Leads</div>
-      </div>
-      <div class="metric m-miss">
-        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-        <div class="metric-val count-num" data-val="${d.missingChasing ?? 0}">${d.missingChasing ?? 0}</div>
-        <div class="metric-label">Missing / Chasing</div>
-      </div>
-    </div>` : `
-    <div class="no-data-card">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span>No data available for this agent</span>
-    </div>`;
+    // If snapshots are set, show base hint
+    const base = snapshots[agent.agent];
+    const baseHint = base
+      ? `<div class="metric-base">Base: ${base.totalActions}</div>`
+      : '';
+    const baseHintFax    = base ? `<div class="metric-base">Base: ${base.faxesSent}</div>`      : '';
+    const baseHintFollow = base ? `<div class="metric-base">Base: ${base.followUps}</div>`      : '';
+    const baseHintPure   = base ? `<div class="metric-base">Base: ${base.pureLeads}</div>`      : '';
+    const baseHintMiss   = base ? `<div class="metric-base">Base: ${base.missingChasing}</div>` : '';
+
+    metricsHTML = `
+      <div class="metrics-grid">
+        <div class="metric m-total span2">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <div class="metric-val">${dTotal}</div>
+          <div class="metric-label">Total Actions</div>
+          ${baseHint}
+        </div>
+        <div class="metric m-fax">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+          <div class="metric-val">${dFax}</div>
+          <div class="metric-label">Faxes Sent</div>
+          ${baseHintFax}
+        </div>
+        <div class="metric m-follow">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="metric-val">${dFollow}</div>
+          <div class="metric-label">Follow Ups</div>
+          ${baseHintFollow}
+        </div>
+        <div class="metric m-pure">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div class="metric-val">${dPure}</div>
+          <div class="metric-label">Pure Leads</div>
+          ${baseHintPure}
+        </div>
+        <div class="metric m-miss">
+          <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div class="metric-val">${dMiss}</div>
+          <div class="metric-label">Missing / Chasing</div>
+          ${baseHintMiss}
+        </div>
+      </div>`;
+  } else {
+    metricsHTML = `
+      <div class="no-data-card">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>No data available for this agent</span>
+      </div>`;
+  }
 
   return `
     <div class="agent-card">
       <div class="card-head">
         <div class="agent-info">
           <div class="agent-avatar">${initials}</div>
-          <div>
-            <div class="agent-name">${escHtml(agent.agent)}</div>
-            ${dateHTML}
-          </div>
+          <div><div class="agent-name">${escHtml(agent.agent)}</div>${dateHTML}</div>
         </div>
         ${badgeHTML}
       </div>
@@ -774,17 +860,17 @@ function escHtml(str) {
 }
 
 // ══════════════════════════════════════════════
-//  TOP STATS
+//  TOP STATS — use DELTA values
 // ══════════════════════════════════════════════
 function updateTopStats() {
   let actions=0, faxes=0, follows=0, pure=0, missing=0;
   agentData.forEach(a => {
     if (!a.data) return;
-    actions  += a.data.totalActions   || 0;
-    faxes    += a.data.faxesSent      || 0;
-    follows  += a.data.followUps      || 0;
-    pure     += a.data.pureLeads      || 0;
-    missing  += a.data.missingChasing || 0;
+    actions  += getDelta(a.agent, 'totalActions',   a.data.totalActions   ?? 0);
+    faxes    += getDelta(a.agent, 'faxesSent',      a.data.faxesSent      ?? 0);
+    follows  += getDelta(a.agent, 'followUps',      a.data.followUps      ?? 0);
+    pure     += getDelta(a.agent, 'pureLeads',      a.data.pureLeads      ?? 0);
+    missing  += getDelta(a.agent, 'missingChasing', a.data.missingChasing ?? 0);
   });
   animateCount('st-agents',  agentData.length);
   animateCount('st-actions', actions);
@@ -798,12 +884,10 @@ function animateCount(id, target) {
   const el = document.getElementById(id);
   if (!el) return;
   const start = parseInt(el.textContent) || 0;
-  const duration = 800;
-  const startTime = performance.now();
+  const t0 = performance.now();
   function step(now) {
-    const t = Math.min((now - startTime) / duration, 1);
-    const ease = 1 - Math.pow(1 - t, 3);
-    el.textContent = Math.round(start + (target - start) * ease);
+    const t = Math.min((now - t0) / 800, 1);
+    el.textContent = Math.round(start + (target - start) * (1 - Math.pow(1 - t, 3)));
     if (t < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
@@ -813,14 +897,14 @@ function animateCount(id, target) {
 //  SLIDE CONTROLS
 // ══════════════════════════════════════════════
 function buildDots() {
-  const container = document.getElementById('slideDots');
-  if (!container) return;
-  container.innerHTML = '';
+  const c = document.getElementById('slideDots');
+  if (!c) return;
+  c.innerHTML = '';
   for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === currentSlide ? ' active' : '');
-    dot.onclick = () => { goToSlide(i); };
-    container.appendChild(dot);
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === currentSlide ? ' active' : '');
+    d.onclick = () => goToSlide(i);
+    c.appendChild(d);
   }
 }
 
@@ -832,53 +916,33 @@ function goToSlide(idx, animate = true) {
     wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
     if (!animate) setTimeout(() => { wrapper.style.transition = ''; }, 50);
   }
-  // Update dots
-  document.querySelectorAll('.slide-counter .dot').forEach((d, i) => {
-    d.classList.toggle('active', i === currentSlide);
-  });
-  // Update info text
+  document.querySelectorAll('.slide-counter .dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
   const info = document.getElementById('slideInfo');
   if (info) info.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
-  // Reset slide progress
   resetSlideProgress();
 }
 
 function nextSlide() { goToSlide(currentSlide + 1); resetSlideTimer(); }
 function prevSlide() { goToSlide(currentSlide - 1); resetSlideTimer(); }
 
-// ══════════════════════════════════════════════
-//  SLIDE AUTO-ADVANCE TIMER
-// ══════════════════════════════════════════════
 function startSlideTimer() {
   clearInterval(slideTimer);
   slideCountdown = SLIDE_INTERVAL;
-  resetSlideProgress();
   slideTimer = setInterval(() => {
     slideCountdown--;
     updateSlideProgress();
-    if (slideCountdown <= 0) {
-      goToSlide(currentSlide + 1);
-      slideCountdown = SLIDE_INTERVAL;
-    }
+    if (slideCountdown <= 0) { goToSlide(currentSlide + 1); slideCountdown = SLIDE_INTERVAL; }
   }, 1000);
 }
 
-function resetSlideTimer() {
-  slideCountdown = SLIDE_INTERVAL;
-  clearInterval(slideTimer);
-  startSlideTimer();
-}
-
+function resetSlideTimer() { slideCountdown = SLIDE_INTERVAL; clearInterval(slideTimer); startSlideTimer(); }
 function resetSlideProgress() {
   const el = document.getElementById('slideProg');
-  if (el) { el.style.transition = 'none'; el.style.width = '0%'; setTimeout(() => { el.style.transition = 'width 1s linear'; }, 20); }
+  if (el) { el.style.transition='none'; el.style.width='0%'; setTimeout(() => { el.style.transition='width 1s linear'; },20); }
 }
-
 function updateSlideProgress() {
   const el = document.getElementById('slideProg');
-  if (!el) return;
-  const pct = ((SLIDE_INTERVAL - slideCountdown) / SLIDE_INTERVAL) * 100;
-  el.style.width = pct + '%';
+  if (el) el.style.width = ((SLIDE_INTERVAL - slideCountdown) / SLIDE_INTERVAL * 100) + '%';
 }
 
 // ══════════════════════════════════════════════
@@ -891,51 +955,29 @@ function startSyncCountdown() {
   syncTimer = setInterval(() => {
     syncCountdown--;
     updateSyncRing(syncCountdown);
-    if (syncCountdown <= 0) {
-      syncCountdown = SYNC_INTERVAL;
-      fetchData();
-    }
+    // Also refresh interval banner every second
+    updateIntervalBanner();
+    // Check resets every second
+    checkAndFireResets();
+    if (syncCountdown <= 0) { syncCountdown = SYNC_INTERVAL; fetchData(); }
   }, 1000);
 }
 
 // ══════════════════════════════════════════════
-//  CONFIG BANNER (when API_URL not set)
+//  FALLBACK / ERROR STATES
 // ══════════════════════════════════════════════
-function showConfigBanner() {
-  const holder = document.getElementById('configBannerHolder');
-  if (holder) {
-    holder.innerHTML = `
-      <div class="config-banner">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>To activate live data: deploy <code>Code.gs</code> as a Web App in Google Apps Script, then replace <code>YOUR_DEPLOYED_WEB_APP_URL_HERE</code> in this HTML file with your deployment URL.</span>
-      </div>`;
-  }
-}
-
 function showLoadingDone() {
-  const stage = document.getElementById('stage');
-  const loading = document.getElementById('loadingScreen');
-  if (loading) loading.remove();
-  if (!document.getElementById('configBannerHolder')) {
-    stage.innerHTML = `<div id="configBannerHolder"></div>` + stage.innerHTML;
-  }
-  showConfigBanner();
-
-  // Show demo cards
-  agentData = [
+  agentData  = [
     { agent: "Demo Agent A", data: { date: "2026-05-22", totalActions: 13, faxesSent: 2, followUps: 11, pureLeads: 29, missingChasing: 25 } },
     { agent: "Demo Agent B", data: { date: "2026-05-22", totalActions: 20, faxesSent: 5, followUps: 15, pureLeads: 40, missingChasing: 10 } },
     { agent: "Demo Agent C", data: null }
   ];
+  breakTimes = ["05:00","07:00","09:30"];
   renderDashboard();
-  const banner = document.querySelector('.config-banner');
-  if (banner) stage.insertBefore(banner.parentElement.removeChild(banner), stage.firstChild);
-  showConfigBanner();
 }
 
 function showError(msg) {
-  const stage = document.getElementById('stage');
-  stage.innerHTML = `
+  document.getElementById('stage').innerHTML = `
     <div class="state-screen">
       <svg class="state-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <div class="state-title">Failed to load data</div>
