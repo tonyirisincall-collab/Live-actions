@@ -313,6 +313,10 @@ header {
 .card-badge.no-data {
   background: rgba(239,68,68,0.1); color: var(--accent5); border-color: rgba(239,68,68,0.2);
 }
+.card-badge.top-badge {
+  background: rgba(245,158,11,0.15); color: var(--accent4); border: 1px solid rgba(245,158,11,0.35);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
 
 /* Metrics grid */
 .metrics-grid {
@@ -518,14 +522,7 @@ header {
       <span class="stat-pill-label">Follow Ups</span>
       <span class="stat-pill-val c-accent3" id="st-follows">—</span>
     </div>
-    <div class="stat-pill">
-      <span class="stat-pill-label">Pure Leads</span>
-      <span class="stat-pill-val c-accent4" id="st-pure">—</span>
-    </div>
-    <div class="stat-pill">
-      <span class="stat-pill-label">Missing / Chasing</span>
-      <span class="stat-pill-val c-accent5" id="st-missing">—</span>
-    </div>
+
   </div>
 
   <!-- ══ MAIN STAGE ══ -->
@@ -544,12 +541,12 @@ header {
 // ══════════════════════════════════════════════
 //  CONFIGURATION — paste your deployed Web App URL here
 // ══════════════════════════════════════════════
-const API_URL = "https://script.google.com/macros/s/AKfycbzmLsSAAe84Y0fzGJN22DWLGoAwhA5bAQF3rRQInrbqtAWdl8KIB4skXdypKlmJjdX2/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwATc8gxNXeTp_hJvOYXZkw_kIwiLl_UZIS5p9lE8FW5fptNlHIZ--u5wwKU7iG5je-/exec";
 
 // ══════════════════════════════════════════════
 //  CONSTANTS
 // ══════════════════════════════════════════════
-const SYNC_INTERVAL  = 30;   // seconds
+const SYNC_INTERVAL  = 5;    // seconds — live refresh
 const AGENTS_PER_SLIDE = 3;  // max agents per slide
 const SLIDE_INTERVAL = 15;   // seconds between auto-slide
 const SLIDE_CIRCUMFERENCE = 2 * Math.PI * 14; // SVG ring
@@ -620,8 +617,8 @@ async function fetchData() {
     if (json.error) throw new Error(json.error);
     agentData = json.agents || [];
     updateLastUpdated(json.fetchedAt);
-    updateShiftBadge(json.currentShift, json.shiftTimes);
-    renderDashboard();
+    updateShiftBadge(json.currentInterval, json.intervals);
+    renderDashboard(json.topAgent);
   } catch (e) {
     console.error('Fetch error:', e);
     showError(e.message);
@@ -640,7 +637,7 @@ function updateLastUpdated(iso) {
 // ══════════════════════════════════════════════
 //  RENDER DASHBOARD
 // ══════════════════════════════════════════════
-function renderDashboard() {
+function renderDashboard(topAgent) {
   const stage = document.getElementById('stage');
 
   if (!agentData.length) {
@@ -664,7 +661,7 @@ function renderDashboard() {
   updateTopStats();
 
   // Build HTML
-  const slidesHTML = chunks.map((chunk, idx) => buildSlide(chunk, idx)).join('');
+  const slidesHTML = chunks.map((chunk, idx) => buildSlide(chunk, idx, topAgent)).join('');
 
   stage.innerHTML = `
     <div id="configBannerHolder"></div>
@@ -692,24 +689,26 @@ function renderDashboard() {
   startSlideTimer();
 }
 
-function buildSlide(agents, idx) {
+function buildSlide(agents, idx, topAgent) {
   const cls = `agents-${agents.length}`;
-  const cards = agents.map(a => buildCard(a)).join('');
+  const cards = agents.map(a => buildCard(a, topAgent)).join('');
   return `<div class="slide ${cls}" data-idx="${idx}">${cards}</div>`;
 }
 
-function buildCard(agent) {
+function buildCard(agent, topAgent) {
   const d = agent.data;
-  const hasData = d && d.totalActions !== undefined;
+  const hasData = d && typeof d.totalActions === 'number';
   const initials = agent.agent.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
 
+  const isTop = topAgent && agent.agent === topAgent && hasData && (d.totalActions || 0) > 0;
   const badgeHTML = hasData
     ? `<span class="card-badge">Active</span>`
     : `<span class="card-badge no-data">No Data</span>`;
+  const crownHTML = isTop ? `<span class="card-badge top-badge">&#9733; Top</span>` : '';
 
-  const shiftStart = d && d.shiftStart ? d.shiftStart : null;
-  const dateHTML = shiftStart
-    ? `<div class="agent-date">Since ${shiftStart}</div>`
+  const intervalLabel = d && d.intervalLabel ? d.intervalLabel : null;
+  const dateHTML = intervalLabel
+    ? `<div class="agent-date">Interval: ${intervalLabel}</div>`
     : (d && d.date ? `<div class="agent-date">${d.date}</div>` : '');
 
   const metricsHTML = hasData ? `
@@ -739,22 +738,7 @@ function buildCard(agent) {
         <div class="metric-val count-num" data-val="${d.followUps ?? 0}">${d.followUps ?? 0}</div>
         <div class="metric-label">Follow Ups</div>
       </div>
-      <div class="metric m-pure">
-        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-        <div class="metric-val count-num" data-val="${d.pureLeads ?? 0}">${d.pureLeads ?? 0}</div>
-        <div class="metric-label">Pure Leads</div>
-      </div>
-      <div class="metric m-miss">
-        <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent5)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <line x1="12" y1="8" x2="12" y2="12"/>
-          <line x1="12" y1="16" x2="12.01" y2="16"/>
-        </svg>
-        <div class="metric-val count-num" data-val="${d.missingChasing ?? 0}">${d.missingChasing ?? 0}</div>
-        <div class="metric-label">Missing / Chasing</div>
-      </div>
+
     </div>` : `
     <div class="no-data-card">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -771,7 +755,7 @@ function buildCard(agent) {
             ${dateHTML}
           </div>
         </div>
-        ${badgeHTML}
+        <div style="display:flex;gap:6px;align-items:center;">${badgeHTML}${crownHTML}</div>
       </div>
       ${metricsHTML}
     </div>`;
@@ -785,21 +769,17 @@ function escHtml(str) {
 //  TOP STATS
 // ══════════════════════════════════════════════
 function updateTopStats() {
-  let actions=0, faxes=0, follows=0, pure=0, missing=0;
+  let actions=0, faxes=0, follows=0;
   agentData.forEach(a => {
     if (!a.data) return;
-    actions  += a.data.totalActions   || 0;
-    faxes    += a.data.faxesSent      || 0;
-    follows  += a.data.followUps      || 0;
-    pure     += a.data.pureLeads      || 0;
-    missing  += a.data.missingChasing || 0;
+    actions += a.data.totalActions || 0;
+    faxes   += a.data.faxesSent    || 0;
+    follows += a.data.followUps    || 0;
   });
   animateCount('st-agents',  agentData.length);
   animateCount('st-actions', actions);
   animateCount('st-faxes',   faxes);
   animateCount('st-follows', follows);
-  animateCount('st-pure',    pure);
-  animateCount('st-missing', missing);
 }
 
 function animateCount(id, target) {
@@ -931,11 +911,11 @@ function showLoadingDone() {
 
   // Show demo cards
   agentData = [
-    { agent: "Demo Agent A", data: { date: "2026-05-22", totalActions: 13, faxesSent: 2, followUps: 11, pureLeads: 29, missingChasing: 25 } },
-    { agent: "Demo Agent B", data: { date: "2026-05-22", totalActions: 20, faxesSent: 5, followUps: 15, pureLeads: 40, missingChasing: 10 } },
+    { agent: "Demo Agent A", data: { intervalLabel: "04:46 → 05:00", totalActions: 13, faxesSent: 2, followUps: 11 } },
+    { agent: "Demo Agent B", data: { intervalLabel: "04:46 → 05:00", totalActions: 20, faxesSent: 5, followUps: 15 } },
     { agent: "Demo Agent C", data: null }
   ];
-  renderDashboard();
+  renderDashboard("Demo Agent B");
   const banner = document.querySelector('.config-banner');
   if (banner) stage.insertBefore(banner.parentElement.removeChild(banner), stage.firstChild);
   showConfigBanner();
@@ -955,20 +935,14 @@ function showError(msg) {
 // ══════════════════════════════════════════════
 //  SHIFT BADGE
 // ══════════════════════════════════════════════
-function updateShiftBadge(currentShift, shiftTimes) {
+function updateShiftBadge(interval, intervals) {
   const badge = document.getElementById('shiftBadge');
   const label = document.getElementById('shiftLabel');
-  if (!badge || !label || !currentShift) return;
+  if (!badge || !label) return;
+  if (!interval) { badge.style.display = 'none'; return; }
   badge.style.display = 'flex';
-
-  // Find next shift
-  let nextShift = null;
-  if (shiftTimes && shiftTimes.length) {
-    const idx = shiftTimes.indexOf(currentShift);
-    if (idx !== -1 && idx + 1 < shiftTimes.length) nextShift = shiftTimes[idx + 1];
-  }
-
-  label.textContent = 'Shift ' + currentShift + (nextShift ? '  →  ' + nextShift : '');
+  const end = interval.end || '—';
+  label.textContent = interval.start + ' → ' + end;
 }
 
 // ══════════════════════════════════════════════
