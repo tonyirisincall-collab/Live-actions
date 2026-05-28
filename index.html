@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
-<!-- ══════════════════════════════════════════════
-     FAVICON  (inline SVG data-URI)
-════════════════════════════════════════════════ -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2300e5ff'/%3E%3Cpath d='M8 22 L16 10 L24 22' stroke='%230a0a0f' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='10' r='2' fill='%230a0a0f'/%3E%3C/svg%3E"/>
 
 <style>
@@ -106,12 +103,8 @@ header {
 }
 [data-theme="light"] header { background: rgba(240,240,248,0.8); }
 
-.logo {
-  display: flex; align-items: center; gap: 12px;
-}
-.logo-icon {
-  width: 36px; height: 36px;
-}
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon { width: 36px; height: 36px; }
 .logo-text {
   font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -155,7 +148,6 @@ header {
 .sync-icon.spinning { animation: spin 0.8s linear; }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Last updated */
 #lastUpdated { font-size: 11px; color: var(--text3); font-family: var(--mono); }
 
 /* Theme toggle */
@@ -184,10 +176,7 @@ header {
 .stat-pill:nth-child(2) { animation-delay: 0.1s; }
 .stat-pill:nth-child(3) { animation-delay: 0.15s; }
 .stat-pill:nth-child(4) { animation-delay: 0.2s; }
-.stat-pill:nth-child(5) { animation-delay: 0.25s; }
-@keyframes slideInTop {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes slideInTop { to { opacity: 1; transform: translateY(0); } }
 .stat-pill-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); }
 .stat-pill-val { font-size: 22px; font-weight: 800; }
 .stat-pill-val.c-accent  { color: var(--accent); }
@@ -203,9 +192,7 @@ header {
 }
 
 /* ══════════ SLIDE HEADER ══════════ */
-.slide-header {
-  display: flex; align-items: center; justify-content: space-between;
-}
+.slide-header { display: flex; align-items: center; justify-content: space-between; }
 .slide-title { font-size: 13px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; font-family: var(--mono); }
 .slide-counter { display: flex; gap: 8px; align-items: center; }
 .dot {
@@ -225,10 +212,7 @@ header {
 .nav-btn:hover { background: var(--card-hover); border-color: var(--accent); color: var(--accent); }
 
 /* Progress bar */
-.slide-progress {
-  height: 2px; background: var(--border);
-  border-radius: 2px; overflow: hidden;
-}
+.slide-progress { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
 .slide-progress-fill {
   height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2));
   border-radius: 2px; width: 0%;
@@ -238,15 +222,12 @@ header {
 /* ══════════ CAROUSEL ══════════ */
 .carousel { position: relative; overflow: hidden; flex: 1; min-height: 400px; }
 .slides-wrapper {
-  display: flex;
-  height: 100%;
+  display: flex; height: 100%;
   transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
 }
 .slide {
   min-width: 100%; height: 100%;
-  display: grid;
-  gap: 20px;
-  align-content: start;
+  display: grid; gap: 20px; align-content: start;
 }
 .slide.agents-1 { grid-template-columns: 1fr; }
 .slide.agents-2 { grid-template-columns: repeat(2, 1fr); }
@@ -273,17 +254,13 @@ header {
 .agent-card:hover { background: var(--card-hover); border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
 .agent-card:hover::before { opacity: 1; }
 
-@keyframes cardIn {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
 .agent-card:nth-child(1) { animation-delay: 0.05s; }
 .agent-card:nth-child(2) { animation-delay: 0.15s; }
 .agent-card:nth-child(3) { animation-delay: 0.25s; }
 
 /* Card header */
-.card-head {
-  display: flex; align-items: center; justify-content: space-between;
-}
+.card-head { display: flex; align-items: center; justify-content: space-between; }
 .agent-info { display: flex; align-items: center; gap: 12px; }
 .agent-avatar {
   width: 44px; height: 44px; border-radius: 50%;
@@ -319,9 +296,7 @@ header {
 }
 
 /* Metrics grid */
-.metrics-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
-}
+.metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .metric {
   background: var(--bg3);
   border-radius: var(--radius-sm);
@@ -332,19 +307,9 @@ header {
 }
 .metric:hover { border-color: var(--border2); }
 
-.metric-icon {
-  width: 28px; height: 28px; margin-bottom: 10px;
-  opacity: 0.8;
-}
-.metric-val {
-  font-size: 28px; font-weight: 800; line-height: 1;
-  font-family: var(--mono);
-  letter-spacing: -1px;
-}
-.metric-label {
-  font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
-  color: var(--text3); margin-top: 4px;
-}
+.metric-icon { width: 28px; height: 28px; margin-bottom: 10px; opacity: 0.8; }
+.metric-val { font-size: 28px; font-weight: 800; line-height: 1; font-family: var(--mono); letter-spacing: -1px; }
+.metric-label { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text3); margin-top: 4px; }
 
 .metric.m-total  .metric-val { color: var(--accent); }
 .metric.m-fax    .metric-val { color: var(--accent2); }
@@ -352,7 +317,6 @@ header {
 .metric.m-pure   .metric-val { color: var(--accent4); }
 .metric.m-miss   .metric-val { color: var(--accent5); }
 
-/* Metric accent line */
 .metric::before {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
   border-radius: 0 2px 2px 0;
@@ -363,10 +327,6 @@ header {
 .metric.m-pure::before   { background: var(--accent4); }
 .metric.m-miss::before   { background: var(--accent5); }
 
-/* Number count animation */
-.count-num { display: inline-block; }
-
-/* Wide metric (total — spans 2 cols on wide cards) */
 .metric.m-total.span2 { grid-column: span 2; }
 
 /* ══════════ EMPTY / ERROR / LOADING STATES ══════════ */
@@ -394,13 +354,10 @@ header {
   padding: 14px 20px;
   display: flex; align-items: center; gap: 12px;
   font-size: 13px; color: var(--accent4);
-  transition: opacity 0.5s;
 }
-.config-banner svg { flex-shrink: 0; }
 .config-banner code {
   font-family: var(--mono); background: var(--bg3);
-  padding: 2px 8px; border-radius: 4px; font-size: 12px;
-  color: var(--text);
+  padding: 2px 8px; border-radius: 4px; font-size: 12px; color: var(--text);
 }
 
 /* ══════════ NO DATA CARD ══════════ */
@@ -443,7 +400,6 @@ header {
   <!-- ══ HEADER ══ -->
   <header>
     <div class="logo">
-      <!-- Logo SVG -->
       <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="10" fill="url(#lg)"/>
         <path d="M11 25 L18 11 L25 25" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -470,7 +426,6 @@ header {
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <span id="shiftLabel">—</span>
       </div>
-
       <div id="lastUpdated">—</div>
 
       <!-- Sync progress ring -->
@@ -479,7 +434,6 @@ header {
           <circle class="sync-ring-track" cx="18" cy="18" r="14"/>
           <circle class="sync-ring-progress" id="syncRing" cx="18" cy="18" r="14"/>
         </svg>
-        <!-- Sync icon SVG -->
         <svg class="sync-icon" id="syncIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M23 4v6h-6"/>
           <path d="M1 20v-6h6"/>
@@ -491,14 +445,10 @@ header {
       <button class="theme-btn" id="themeBtn" title="Toggle theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
           <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
       </button>
     </div>
@@ -522,12 +472,10 @@ header {
       <span class="stat-pill-label">Follow Ups</span>
       <span class="stat-pill-val c-accent3" id="st-follows">—</span>
     </div>
-
   </div>
 
   <!-- ══ MAIN STAGE ══ -->
   <div class="stage" id="stage">
-    <!-- Loading screen shown first -->
     <div class="state-screen" id="loadingScreen">
       <div class="loader-ring"></div>
       <div class="state-title">Connecting to live data…</div>
@@ -539,28 +487,29 @@ header {
 
 <script>
 // ══════════════════════════════════════════════
-//  CONFIGURATION — paste your deployed Web App URL here
+//  CONFIGURATION
 // ══════════════════════════════════════════════
-const API_URL = "https://script.google.com/macros/s/AKfycbypXomDxXKEIVtfrNINCN7jKmjVAwQMv6Dz7NflyLKeHOJvTA0cZUbz06YpznpLgsY/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwhpZXWNFAIW2lE8IKwtJbJ80B_RnAjQn57SWFbcuC2Tfflt_QbVrlmxlBamRjEdJYV/exec";
 
 // ══════════════════════════════════════════════
 //  CONSTANTS
 // ══════════════════════════════════════════════
-const SYNC_INTERVAL  = 5;    // seconds — live refresh
-const AGENTS_PER_SLIDE = 3;  // max agents per slide
-const SLIDE_INTERVAL = 15;   // seconds between auto-slide
-const SLIDE_CIRCUMFERENCE = 2 * Math.PI * 14; // SVG ring
+const SYNC_INTERVAL    = 5;   // seconds between data refreshes
+const AGENTS_PER_SLIDE = 3;   // max agents per slide
+const SLIDE_INTERVAL   = 15;  // seconds between auto-slide advances
+const SLIDE_CIRCUMFERENCE = 2 * Math.PI * 14;
 
 // ══════════════════════════════════════════════
 //  STATE
 // ══════════════════════════════════════════════
-let agentData     = [];
-let currentSlide  = 0;
-let totalSlides   = 0;
-let syncTimer     = null;
-let slideTimer    = null;
-let syncCountdown = 0;
-let slideCountdown= 0;
+let agentData          = [];
+let currentSlide       = 0;
+let totalSlides        = 0;
+let syncTimer          = null;
+let slideTimer         = null;
+let syncCountdown      = 0;
+let slideCountdown     = 0;
+let dashboardBuilt     = false;  // true after the carousel is first created
 
 // ══════════════════════════════════════════════
 //  THEME
@@ -571,19 +520,15 @@ const themeIcon = document.getElementById('themeIcon');
 const MOON_SVG = `<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
 const SUN_SVG  = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
 
-function setThemeIcon(theme) {
-  themeIcon.innerHTML = theme === 'dark' ? MOON_SVG : SUN_SVG;
-}
+function setThemeIcon(theme) { themeIcon.innerHTML = theme === 'dark' ? MOON_SVG : SUN_SVG; }
 
 themeBtn.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   setThemeIcon(next);
 });
 
-// Init theme
 const savedTheme = localStorage.getItem('theme') || 'dark';
 document.documentElement.setAttribute('data-theme', savedTheme);
 setThemeIcon(savedTheme);
@@ -595,8 +540,7 @@ const syncRingEl = document.getElementById('syncRing');
 const syncIconEl = document.getElementById('syncIcon');
 
 function updateSyncRing(secondsLeft) {
-  const fraction = secondsLeft / SYNC_INTERVAL;
-  const offset = SLIDE_CIRCUMFERENCE * (1 - fraction);
+  const offset = SLIDE_CIRCUMFERENCE * (1 - secondsLeft / SYNC_INTERVAL);
   syncRingEl.style.strokeDashoffset = offset;
 }
 
@@ -629,51 +573,65 @@ async function fetchData() {
 
 function updateLastUpdated(iso) {
   const el = document.getElementById('lastUpdated');
-  if (!iso) return;
+  if (!iso || !el) return;
   const d = new Date(iso);
   el.textContent = 'Updated ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 }
 
 // ══════════════════════════════════════════════
 //  RENDER DASHBOARD
+//  Key behaviour: on the first call, build the
+//  carousel fresh and start the slide timer.
+//  On every subsequent call, rebuild ONLY the
+//  card HTML and restore the existing slide
+//  position + countdown so the timer is never
+//  interrupted by a data refresh.
 // ══════════════════════════════════════════════
 function renderDashboard(topAgent) {
   const stage = document.getElementById('stage');
 
   if (!agentData.length) {
+    dashboardBuilt = false;
     stage.innerHTML = `
       <div class="state-screen">
         <svg class="state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
         <div class="state-title">No Agents Found</div>
-        <div class="state-msg">The Agents sheet appears to be empty. Add agent names to column A of the "Agents" sheet in your master spreadsheet.</div>
+        <div class="state-msg">Add agent names to column A of the "Agents" sheet in your master spreadsheet.</div>
       </div>`;
     return;
   }
 
-  // Build slides
+  // Snapshot current timer state before touching the DOM
+  const savedSlide     = currentSlide;
+  const savedCountdown = slideCountdown;
+
+  // Build slide chunks
   const chunks = [];
   for (let i = 0; i < agentData.length; i += AGENTS_PER_SLIDE) {
     chunks.push(agentData.slice(i, i + AGENTS_PER_SLIDE));
   }
   totalSlides = chunks.length;
 
-  // Update top stats
+  // Clamp saved slide in case agent count changed
+  const targetSlide = (savedSlide < totalSlides) ? savedSlide : 0;
+
+  // Update top stats bar
   updateTopStats();
 
-  // Build HTML
+  // Build the full scaffold HTML
   const slidesHTML = chunks.map((chunk, idx) => buildSlide(chunk, idx, topAgent)).join('');
 
   stage.innerHTML = `
     <div id="configBannerHolder"></div>
     <div class="slide-header">
-      <span class="slide-title">Agent Dashboard &nbsp;·&nbsp; <span id="slideInfo">Slide 1 of ${totalSlides}</span></span>
+      <span class="slide-title">Agent Dashboard &nbsp;&middot;&nbsp; <span id="slideInfo">Slide 1 of ${totalSlides}</span></span>
       <div style="display:flex;align-items:center;gap:16px;">
         <div class="slide-counter" id="slideDots"></div>
         <div class="nav-btns">
-          <button class="nav-btn" id="prevBtn" onclick="prevSlide()">
+          <button class="nav-btn" onclick="prevSlide()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+          <button class="nav-btn" onclick="nextSlide()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
@@ -685,26 +643,44 @@ function renderDashboard(topAgent) {
     </div>`;
 
   buildDots();
-  goToSlide(currentSlide, false);
-  startSlideTimer();
+  // Restore position silently (no animation, no timer reset)
+  goToSlide(targetSlide, false);
+
+  if (!dashboardBuilt) {
+    // First render — start the slide timer fresh
+    dashboardBuilt = true;
+    startSlideTimer();
+  } else {
+    // Subsequent renders — restore the countdown and progress bar
+    // The setInterval in slideTimer is still running; just sync visuals
+    slideCountdown = savedCountdown;
+    const prog = document.getElementById('slideProg');
+    if (prog) {
+      const pct = ((SLIDE_INTERVAL - savedCountdown) / SLIDE_INTERVAL) * 100;
+      prog.style.transition = 'none';
+      prog.style.width = pct + '%';
+      // Re-enable smooth transition after a short frame gap
+      setTimeout(() => { if (prog) prog.style.transition = 'width 1s linear'; }, 60);
+    }
+  }
 }
 
 function buildSlide(agents, idx, topAgent) {
-  const cls = `agents-${agents.length}`;
+  const cls   = 'agents-' + agents.length;
   const cards = agents.map(a => buildCard(a, topAgent)).join('');
   return `<div class="slide ${cls}" data-idx="${idx}">${cards}</div>`;
 }
 
 function buildCard(agent, topAgent) {
-  const d = agent.data;
+  const d       = agent.data;
   const hasData = d && typeof d.totalActions === 'number';
-  const initials = agent.agent.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+  const initials = agent.agent.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
 
-  const isTop = topAgent && agent.agent === topAgent && hasData && (d.totalActions || 0) > 0;
-  const badgeHTML = hasData
+  const isTop      = topAgent && agent.agent === topAgent && hasData && (d.totalActions || 0) > 0;
+  const badgeHTML  = hasData
     ? `<span class="card-badge">Active</span>`
     : `<span class="card-badge no-data">No Data</span>`;
-  const crownHTML = isTop ? `<span class="card-badge top-badge">&#9733; Top</span>` : '';
+  const crownHTML  = isTop ? `<span class="card-badge top-badge">&#9733; Top</span>` : '';
 
   const intervalLabel = d && d.intervalLabel ? d.intervalLabel : null;
   const dateHTML = intervalLabel
@@ -717,7 +693,7 @@ function buildCard(agent, topAgent) {
         <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
         </svg>
-        <div class="metric-val count-num" data-val="${d.totalActions}">${d.totalActions}</div>
+        <div class="metric-val">${d.totalActions}</div>
         <div class="metric-label">Total Actions</div>
       </div>
       <div class="metric m-fax">
@@ -725,7 +701,7 @@ function buildCard(agent, topAgent) {
           <polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/>
           <polyline points="16 17 22 17 22 11"/>
         </svg>
-        <div class="metric-val count-num" data-val="${d.faxesSent ?? 0}">${d.faxesSent ?? 0}</div>
+        <div class="metric-val">${d.faxesSent ?? 0}</div>
         <div class="metric-label">Faxes Sent</div>
       </div>
       <div class="metric m-follow">
@@ -735,10 +711,9 @@ function buildCard(agent, topAgent) {
           <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
           <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
-        <div class="metric-val count-num" data-val="${d.followUps ?? 0}">${d.followUps ?? 0}</div>
+        <div class="metric-val">${d.followUps ?? 0}</div>
         <div class="metric-label">Follow Ups</div>
       </div>
-
     </div>` : `
     <div class="no-data-card">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -769,7 +744,7 @@ function escHtml(str) {
 //  TOP STATS
 // ══════════════════════════════════════════════
 function updateTopStats() {
-  let actions=0, faxes=0, follows=0;
+  let actions = 0, faxes = 0, follows = 0;
   agentData.forEach(a => {
     if (!a.data) return;
     actions += a.data.totalActions || 0;
@@ -789,7 +764,7 @@ function animateCount(id, target) {
   const duration = 800;
   const startTime = performance.now();
   function step(now) {
-    const t = Math.min((now - startTime) / duration, 1);
+    const t    = Math.min((now - startTime) / duration, 1);
     const ease = 1 - Math.pow(1 - t, 3);
     el.textContent = Math.round(start + (target - start) * ease);
     if (t < 1) requestAnimationFrame(step);
@@ -812,23 +787,25 @@ function buildDots() {
   }
 }
 
-function goToSlide(idx, animate = true) {
+function goToSlide(idx, animate) {
+  if (animate === undefined) animate = true;
   currentSlide = ((idx % totalSlides) + totalSlides) % totalSlides;
+
   const wrapper = document.getElementById('slidesWrapper');
   if (wrapper) {
     if (!animate) wrapper.style.transition = 'none';
     wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-    if (!animate) setTimeout(() => { wrapper.style.transition = ''; }, 50);
+    if (!animate) setTimeout(() => { if (wrapper) wrapper.style.transition = ''; }, 50);
   }
-  // Update dots
+
   document.querySelectorAll('.slide-counter .dot').forEach((d, i) => {
     d.classList.toggle('active', i === currentSlide);
   });
-  // Update info text
+
   const info = document.getElementById('slideInfo');
   if (info) info.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
-  // Reset slide progress
-  resetSlideProgress();
+
+  if (animate) resetSlideProgress();
 }
 
 function nextSlide() { goToSlide(currentSlide + 1); resetSlideTimer(); }
@@ -859,7 +836,10 @@ function resetSlideTimer() {
 
 function resetSlideProgress() {
   const el = document.getElementById('slideProg');
-  if (el) { el.style.transition = 'none'; el.style.width = '0%'; setTimeout(() => { el.style.transition = 'width 1s linear'; }, 20); }
+  if (!el) return;
+  el.style.transition = 'none';
+  el.style.width = '0%';
+  setTimeout(() => { if (el) el.style.transition = 'width 1s linear'; }, 20);
 }
 
 function updateSlideProgress() {
@@ -895,30 +875,23 @@ function showConfigBanner() {
     holder.innerHTML = `
       <div class="config-banner">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>To activate live data: deploy <code>Code.gs</code> as a Web App in Google Apps Script, then replace <code>YOUR_DEPLOYED_WEB_APP_URL_HERE</code> in this HTML file with your deployment URL.</span>
+        <span>To activate live data: deploy <code>Code.gs</code> as a Web App, then replace the <code>API_URL</code> value in this file with your deployment URL.</span>
       </div>`;
   }
 }
 
 function showLoadingDone() {
   const stage = document.getElementById('stage');
-  const loading = document.getElementById('loadingScreen');
-  if (loading) loading.remove();
-  if (!document.getElementById('configBannerHolder')) {
-    stage.innerHTML = `<div id="configBannerHolder"></div>` + stage.innerHTML;
-  }
+  stage.innerHTML = `<div id="configBannerHolder"></div>`;
   showConfigBanner();
-
-  // Show demo cards
   agentData = [
-    { agent: "Demo Agent A", data: { intervalLabel: "04:46 → 05:00", totalActions: 13, faxesSent: 2, followUps: 11 } },
-    { agent: "Demo Agent B", data: { intervalLabel: "04:46 → 05:00", totalActions: 20, faxesSent: 5, followUps: 15 } },
+    { agent: "Demo Agent A", data: { intervalLabel: "09:00 → 11:00", totalActions: 13, faxesSent: 2, followUps: 11 } },
+    { agent: "Demo Agent B", data: { intervalLabel: "09:00 → 11:00", totalActions: 20, faxesSent: 5, followUps: 15 } },
     { agent: "Demo Agent C", data: null }
   ];
   renderDashboard("Demo Agent B");
   const banner = document.querySelector('.config-banner');
-  if (banner) stage.insertBefore(banner.parentElement.removeChild(banner), stage.firstChild);
-  showConfigBanner();
+  if (banner) stage.insertBefore(banner, stage.firstChild);
 }
 
 function showError(msg) {
@@ -931,18 +904,16 @@ function showError(msg) {
     </div>`;
 }
 
-
 // ══════════════════════════════════════════════
 //  SHIFT BADGE
 // ══════════════════════════════════════════════
-function updateShiftBadge(interval, intervals) {
+function updateShiftBadge(interval) {
   const badge = document.getElementById('shiftBadge');
   const label = document.getElementById('shiftLabel');
   if (!badge || !label) return;
   if (!interval) { badge.style.display = 'none'; return; }
   badge.style.display = 'flex';
-  const end = interval.end || '—';
-  label.textContent = interval.start + ' → ' + end;
+  label.textContent   = interval.start + ' → ' + (interval.end || '—');
 }
 
 // ══════════════════════════════════════════════
